@@ -1,0 +1,664 @@
+/* ============================================
+   MUSICDLE - Estilos CSS
+   Tema: Colorido e moderno
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Cores principais */
+:root {
+    --primary-color: #6366f1;      /* Indigo */
+    --secondary-color: #ec4899;    /* Rosa */
+    --success-color: #10b981;      /* Verde */
+    --error-color: #ef4444;        /* Vermelho */
+    --background: #0f172a;         /* Azul muito escuro */
+    --surface: #1e293b;            /* Azul escuro */
+    --text-primary: #f1f5f9;       /* Branco */
+    --text-secondary: #cbd5e1;     /* Cinza claro */
+    --border-color: #334155;       /* Cinza médio */
+}
+
+/* Body e background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--background) 0%, #1a1f3a 100%);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Container principal */
+.container {
+    width: 100%;
+    max-width: 600px;
+    background: var(--surface);
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+
+.header h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header .subtitle {
+    font-size: 16px;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Área do jogo */
+.game-area {
+    flex: 1;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Display da música */
+.music-display {
+    text-align: center;
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+    border-radius: 20px;
+    border: 2px solid var(--border-color);
+}
+
+.album-art {
+    font-size: 80px;
+    margin-bottom: 20px;
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.music-info {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Seção de input */
+.input-section {
+    display: flex;
+    gap: 12px;
+}
+
+.input-wrapper {
+    flex: 1;
+    position: relative;
+}
+
+.input-field {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 16px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input-field::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Sistema de dicas desbloqueáveis */
+.hints-unlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(236, 72, 153, 0.1);
+    border-radius: 12px;
+    border: 1px solid var(--secondary-color);
+}
+
+.hints-unlock.hidden {
+    display: none;
+}
+
+.hint-unlock-btn {
+    padding: 10px 16px;
+    background: rgba(236, 72, 153, 0.2);
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 150px;
+}
+
+.hint-unlock-btn:hover:not(.hidden) {
+    background: rgba(236, 72, 153, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(236, 72, 153, 0.3);
+}
+
+.hint-unlock-btn.hidden {
+    display: none;
+}
+
+/* Dicas reveladas */
+.revealed-hints {
+    padding: 15px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 12px;
+    border: 1px solid var(--success-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.revealed-hints.hidden {
+    display: none;
+}
+
+.hint-revealed {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    background: rgba(16, 185, 129, 0.2);
+    border-radius: 8px;
+    animation: slideDown 0.3s ease;
+}
+
+.hint-revealed.hidden {
+    display: none;
+}
+
+.hint-revealed-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.hint-revealed-value {
+    color: var(--success-color);
+    font-weight: 600;
+    font-size: 14px;
+    flex: 1;
+}
+
+/* Sistema de sugestões */
+.suggestions-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border: 2px solid var(--border-color);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    margin-top: -2px;
+}
+
+.suggestions-list.hidden {
+    display: none;
+}
+
+/* Scrollbar da lista de sugestões */
+.suggestions-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.suggestions-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.suggestions-list::-webkit-scrollbar-thumb {
+    background: rgba(99, 102, 241, 0.4);
+    border-radius: 3px;
+}
+
+.suggestions-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.6);
+}
+
+.suggestion-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.suggestion-item:hover {
+    background: rgba(99, 102, 241, 0.15);
+    padding-left: 24px;
+}
+
+.suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.suggestion-title {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.suggestion-artist {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Botão Chutar */
+.btn-guess {
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-guess:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-guess:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-guess:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Feedback */
+.feedback {
+    padding: 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 18px;
+    text-align: center;
+    animation: slideDown 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feedback.success {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--success-color);
+    border: 2px solid var(--success-color);
+}
+
+.feedback.error {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--error-color);
+    border: 2px solid var(--error-color);
+}
+
+.feedback.hidden {
+    display: none;
+}
+
+/* Seção de tentativas - Tabela */
+.attempts-section {
+    padding: 20px;
+    background: rgba(99, 102, 241, 0.05);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.attempts-section h3 {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.attempts-table {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.attempt-row {
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border-left: 4px solid var(--border-color);
+    animation: slideDown 0.3s ease;
+}
+
+.attempt-row.correct {
+    border-left-color: var(--success-color);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.attempt-row.incorrect {
+    border-left-color: var(--error-color);
+    background: rgba(239, 68, 68, 0.05);
+}
+
+.attempt-row-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.attempt-hints {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+}
+
+.attempt-hint {
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    font-size: 12px;
+    border-left: 3px solid var(--border-color);
+}
+
+.attempt-hint.correct {
+    border-left-color: var(--success-color);
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success-color);
+}
+
+.attempt-hint.incorrect {
+    border-left-color: var(--error-color);
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+}
+
+.attempt-hint-label {
+    display: block;
+    font-size: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+}
+
+.attempt-hint-value {
+    font-weight: 600;
+}
+
+.empty-state {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Botão Nova Rodada */
+.btn-new-game {
+    padding: 16px 32px;
+    background: linear-gradient(135deg, var(--success-color), #059669);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+}
+
+.btn-new-game:hover:not(.hidden) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-new-game.hidden {
+    display: none;
+}
+
+/* Footer */
+.footer {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 14px;
+    border-top: 1px solid var(--border-color);
+    background: rgba(0, 0, 0, 0.2);
+}
+
+/* Modal de seleção de modo de jogo */
+.mode-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    animation: fadeIn 0.3s ease;
+}
+
+.mode-modal.hidden {
+    display: none;
+}
+
+.mode-modal-content {
+    background: var(--surface);
+    border-radius: 20px;
+    padding: 40px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.mode-modal-content h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.mode-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 25px;
+    margin-bottom: 15px;
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    background: rgba(99, 102, 241, 0.05);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mode-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+}
+
+.mode-btn.mode-btn-random:hover {
+    border-color: var(--primary-color);
+    background: rgba(99, 102, 241, 0.15);
+}
+
+.mode-btn.mode-btn-challenge:hover {
+    border-color: var(--secondary-color);
+    background: rgba(236, 72, 153, 0.15);
+}
+
+.mode-icon {
+    font-size: 32px;
+}
+
+.mode-title {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.mode-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* Modal de seletor de músicas */
+.music-selector-content {
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-search-input {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--background);
+    color: var(--text-primary);
+    font-size: 15px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.music-search-input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.music-selector-list {
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.music-selector-item {
+    padding: 15px;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.music-selector-item:hover {
+    background: rgba(99, 102, 241, 0.2);
+    transform: translateX(5px);
+    border-color: var(--primary-color);
+}
+
+.music-selector-item-title {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 3px;
+}
+
+.music-selector-item-artist {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+
+@media (max-width: 480px) {
+    .container {
+        border-radius: 16px;
+        min-height: 100vh;
+    }
+
+    .header h1 {
+        font-size: 36px;
+    }
+
+    .header .subtitle {
+        font-size: 14px;
+    }
+
+    .game-area {
+        padding: 25px 15px;
+        gap: 20px;
+    }
+
+    .album-art {
+        font-size: 60px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    .btn-guess {
+        width: 100%;
+    }
+
+    .attempts-list {
+        justify-content: center;
+    }
+}
